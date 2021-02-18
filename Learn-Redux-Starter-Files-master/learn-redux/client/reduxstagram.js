@@ -17,6 +17,25 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
 
+//importing sentry which helps to find issues the config file is inside data config.js
+
+import Raven from 'raven-js';
+import {logException, sentry_url} from './data/config';
+
+Raven.config(sentry_url,{
+    tags:{
+        git_commit:'fadfaf',
+        userLevel:'editor'
+    }
+}).install(); //it will catch all the errors that happens in user consolePropTypes.any
+
+// logException(new Error('download failed!'),{
+//     email:'marasinipradeep@gmail.com'
+// });
+
+Raven.captureMessage('Something bad happened!');
+Raven.showReportDialog();
+
 const router = (
 
     <Provider store={store}>
