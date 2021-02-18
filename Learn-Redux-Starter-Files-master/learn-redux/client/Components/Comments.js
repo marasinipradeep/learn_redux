@@ -1,28 +1,47 @@
 import React from 'react';
 
-function Comments(props) {
+const Comments = React.createClass({
 
-    const renderComment = (comment, i) =>{
 
+    renderComment(comment, i) {
         return (
             <div className="comment" key={i}>
                 <p>
                     <strong>
                         {comment.user}
                     </strong>
+                    {comment.text}
+                    <button className="remove-comment">&times;</button>
                 </p>
             </div>
-
         )
-    }
+    },
 
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log("on enter clicked")
+        const { postId } = this.props.params;
+        const author = this.refs.author.value;
+        const comment = this.refs.comment.value;
 
-    return (
-        <div className="comment">
-            {props.postComments.map(renderComment)}
+        this.props.addComment(postId,author,comment);
 
-        </div>
-    )
+    },
+
+    render() {
+        return (
+            <div className="comments">
+                {this.props.postComments.map(this.renderComment)}
+                <form className="comment-form" ref="commentForm" onSubmit={this.handleSubmit}>
+                    <input type="text" ref="author" placeholder="author" />
+                    <input type="text" ref="comment" placeholder="comment"></input>
+                    <input type="submit" hidden></input>
+                </form>
+            </div>
+        )
+    },
+
 }
+)
 
 export default Comments;
