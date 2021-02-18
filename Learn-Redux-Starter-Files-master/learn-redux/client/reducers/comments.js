@@ -2,7 +2,7 @@
 
 function postComments(state = [], action) {
     switch (action.type) {
-        case "ADD_COMMENT":
+        case 'ADD_COMMENT':
             //return the state with the new comment
 
             return [...state,{
@@ -11,7 +11,7 @@ function postComments(state = [], action) {
             }];
 
 
-        case "REMOVE_COMMENT":
+        case 'REMOVE_COMMENT':
             //We need to return out the new state without the deleted comment
             return [
                 //from the start to the one we want to delete

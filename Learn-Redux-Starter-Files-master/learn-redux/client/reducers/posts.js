@@ -9,7 +9,7 @@ function posts(state = [], action) {
 
     switch (action.type) {
 
-        case "INCREMENT_LIKES":
+        case 'INCREMENT_LIKES':
 
         const i = action.index;
             //return the updated state
@@ -19,7 +19,7 @@ function posts(state = [], action) {
                 ...state.slice(i + 1), //agter the one we are updating
             ]
 
-            console.log("increment likes")
+            console.log('increment likes')
 
         default:
             return state;
