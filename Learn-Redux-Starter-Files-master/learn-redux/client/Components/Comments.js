@@ -1,12 +1,26 @@
 import React from 'react';
 
 function Comments(props) {
-    
+
+    const renderComment = (comment, i) =>{
+
+        return (
+            <div className="comment" key={i}>
+                <p>
+                    <strong>
+                        {comment.user}
+                    </strong>
+                </p>
+            </div>
+
+        )
+    }
+
 
     return (
         <div className="comment">
-            I'm comments
-            
+            {props.postComments.map(renderComment)}
+
         </div>
     )
 }
