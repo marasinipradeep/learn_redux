@@ -20,8 +20,14 @@ const defaultState = {
     comments
 };
 
+//This is for chrome devtools. If we dont define the devtool will give us message as no store found
 
-const store = createStore(rootReducer,defaultState);
+const enhancers = compose(
+    window.devToolsExtension ? window.devToolsExtension() : (f)=>f
+)
+
+
+const store = createStore(rootReducer,defaultState, enhancers);//we are passing enhancers for chrome devtool
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
